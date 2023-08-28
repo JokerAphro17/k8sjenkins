@@ -2,9 +2,6 @@ pipeline {
     agent 'buit-in'
     
     environment {
-        DOCKER_HUB_USERNAME = credentials('dockerhub-username') 
-        DOCKER_HUB_PASSWORD = credentials('dockerhub-password')
-        KUBECONFIG = credentials('kubeconfig')
         APP_VERSION = '1.0.0'
     }
 
@@ -18,11 +15,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+
+                    
+                    withCredentials([usernamePassword(credentialsId: '06220f9e-24b2-4ff4-8655-5c2cdd37adfe	', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                     def appImage = "jokeru17/mynodeapp:${APP_VERSION}"
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD) {
+                    
+                    docker.withRegistry('https://index.docker.io/v1/', ${DOCKER_HUB_USERNAME}, ${DOCKER_HUB_PASSWORD}) {
                         def dockerImage = docker.build(appImage, './path/to/app')
                         dockerImage.push()
-                    }
+                    }}
                 }
             }
         }
