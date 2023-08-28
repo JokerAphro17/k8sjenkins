@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'buit-in'
     
     environment {
         DOCKER_HUB_USERNAME = credentials('dockerhub-username') 
