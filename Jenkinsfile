@@ -1,5 +1,7 @@
 pipeline {
-    agent  jenkins-agent-docker
+    agent  {
+        label 'Built-In Node'
+    }
     
     environment {
         DOCKER_HUB_ID = '06220f9e-24b2-4ff4-8655-5c2cdd37adfe'
