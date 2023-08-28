@@ -20,7 +20,7 @@ pipeline {
                     sh 'pwd'
                     def appImage = "jokeru17/mynodeapp:${APP_VERSION}"
                     docker.withRegistry('https://index.docker.io/v1/', '06220f9e-24b2-4ff4-8655-5c2cdd37adfe') {
-                        def dockerImage = docker.build(appImage, './')
+                        def dockerImage = docker.build(appImage, './var/lib/jenkins/workspace/automation')
                         dockerImage.push()
                     }
                 }
