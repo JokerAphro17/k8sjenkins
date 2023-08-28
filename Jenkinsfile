@@ -16,12 +16,18 @@ pipeline {
         
         stage('Build Docker Image') {
             steps {
+                agent {
+                    docker {
+                        image 'node:latest'
+                        args '-p 3000:3000'
+                    }
+                }
                 script {
                     sh "ls -la"
                     def appImage = "jokeru17/mynodeapp:latest"
                     docker.withRegistry('https://index.docker.io/v1/', '06220f9e-24b2-4ff4-8655-5c2cdd37adfe') {
                         sh "ls -la"
-                        def dockerImage = docker.build('mynodeapp:latest')
+                        def dockerImage = docker.build(appImage)
                         dockerImage.push()
                     }
                 }
