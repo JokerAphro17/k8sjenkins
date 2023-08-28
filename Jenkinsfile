@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'jenkins-agent-docker	'
-    }
+    agent any
     
     environment {
         DOCKER_HUB_USERNAME = 'jokeru17'
