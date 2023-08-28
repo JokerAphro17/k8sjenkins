@@ -1,6 +1,7 @@
 pipeline {
-    agent any
-    
+    agent {
+        label 'jenkins-agent-docker'
+    }
     environment {
         DOCKER_HUB_USERNAME = 'jokeru17'
         DOCKER_HUB_PASSWORD = 'Kakare@45'
