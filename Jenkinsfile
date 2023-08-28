@@ -1,9 +1,8 @@
 pipeline {
-    agent any
+    agent  jenkins-agent-docker
     
     environment {
         DOCKER_HUB_ID = '06220f9e-24b2-4ff4-8655-5c2cdd37adfe'
-        KUBECONFIG = credentials('kubeconfig')
         APP_VERSION = '1.0.0'
     }
 
