@@ -1,10 +1,9 @@
 pipeline {
-    agent  {
-        label 'jenkins-agent-docker-00022ec4jjk99'
-    }
+    agent 'buit-in'
     
     environment {
-        DOCKER_HUB_ID = '06220f9e-24b2-4ff4-8655-5c2cdd37adfe'
+        DOCKER_HUB_USERNAME = 'jokeru17'
+        DOCKER_HUB_PASSWORD = 'Kakare@45'
         APP_VERSION = '1.0.0'
     }
 
@@ -19,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def appImage = "jokeru17/mynodeapp:${APP_VERSION}"
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_ID) {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_USERNAME, DOCKER_HUB_PASSWORD) {
                         def dockerImage = docker.build(appImage, './path/to/app')
                         dockerImage.push()
                     }
