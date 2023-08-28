@@ -1,5 +1,5 @@
 pipeline {
-    agent 'buit-in'
+    agent 'jenkins-agent-docker-00022ec4jjk99'
     
     environment {
         DOCKER_HUB_USERNAME = 'jokeru17'
