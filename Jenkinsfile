@@ -26,15 +26,6 @@ pipeline {
             }
         }
         
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    def kubeconfigFile = writeFile file: 'kubeconfig', text: env.KUBECONFIG
-                    def kubeconfigEnv = "KUBECONFIG=${kubeconfigFile}"
-                    
-                    sh "kubectl ${kubeconfigEnv} apply -f ./path/to/deployment.yaml"
-                }
-            }
-        }
+        
     }
 }
