@@ -15,13 +15,13 @@ pipeline {
         }
         
         stage('Build Docker Image') {
-            steps {
                 agent {
                     docker {
                         image 'node:latest'
                         args '-p 3000:3000'
                     }
                 }
+            steps {
                 script {
                     sh "ls -la"
                     def appImage = "jokeru17/mynodeapp:latest"
