@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'docker'
-    }
+    agent any
     environment {
         DOCKER_HUB_USERNAME = 'jokeru17'
         DOCKER_HUB_PASSWORD = 'Kakare@45'
