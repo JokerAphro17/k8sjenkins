@@ -23,7 +23,9 @@ pipeline {
          }
     }
 
-    stage('Push Docker Image') {
+    
+
+    stage('Push Docker cImage') {
         steps {
             script {
                 withDockerRegistry([credentialsId: '06220f9e-24b2-4ff4-8655-5c2cdd37adfe', url: '']) {
