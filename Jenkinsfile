@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_USERNAME = 'jokeru17'
-        DOCKER_HUB_PASSWORD = 'Kakare@45'
+        DOCKER_HUB_USERNAME = ''
+        DOCKER_HUB_PASSWORD = ''
         APP_VERSION = 'latest'
     }
 
