@@ -43,9 +43,4 @@ node {
         def customImage = docker.build("jokeru17/mynodeapp:latest")
         customImage.push()
     }
-   'dockerhub-credential') {
-
-        def customImage = docker.build("jokeru17/mynodeapp:latest")
-        customImage.push()
-    }
 }
