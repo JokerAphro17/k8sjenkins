@@ -26,7 +26,7 @@ pipeline {
     stage('Push Docker cImage') {
         steps {
             script {
-                withDockerRegistry([credentialsId: '06220f9e-24b2-4ff4-8655-5c2cdd37adfe', url: '']) {
+                withDockerRegistry([credentialsId: '8e011261-97ee-49d5-bfa3-d17ae686719d', url: '']) {
                     sh "docker push ${DOCKER_HUB_USERNAME}/mynodeapp:${APP_VERSION}"
                 }
             }
