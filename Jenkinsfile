@@ -13,12 +13,12 @@ pipeline {
             }
         }
         
-        stage('Build Docker Image') {
-         steps {
-             script {
-                 sh "docker build -t ${DOCKER_HUB_USERNAME}/mynodeapp:${APP_VERSION} ."
-             }
-         }
+        // stage('Build Docker Image') {
+        //  steps {
+        //      script {
+        //          sh "docker build -t ${DOCKER_HUB_USERNAME}/mynodeapp:${APP_VERSION} ."
+        //      }
+        //  }
     }
 
     
