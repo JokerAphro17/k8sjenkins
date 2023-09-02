@@ -1,46 +1,26 @@
-// pipeline {
-//     agent any
-//     environment {
-//         DOCKER_HUB_USERNAME = 'jokeru17'
-//         DOCKER_HUB_PASSWORD = 'Kakare@45'
-//         APP_VERSION = 'latest'
-//     }
-
-//     stages {
-//         stage('Checkout') {
-//             steps {
-//                 checkout scm // Checkout the code from a Git repo
-//             }
-//         }
-        
-//     //     stage('Build Docker Image') {
-//     //      steps {
-//     //          script {
-//     //              sh "docker build -t ${DOCKER_HUB_USERNAME}/mynodeapp:${APP_VERSION} ."
-//     //          }
-//     //      }
-//     // }
-
-    
-
-//     stage('Push Docker cImage') {
-//         steps {
-//             script {
-//                 withDockerRegistry([credentialsId: '8e011261-97ee-49d5-bfa3-d17ae686719d', url: '']) {
-//                     sh "docker push ${DOCKER_HUB_USERNAME}/mynodeapp:${APP_VERSION}"
-//                 }
-//             }
-//         }
-//     }
-// }
-// }
-
-node {
-    checkout scm
-
-   docker.withRegistry('https://registry.hub.docker.com/v2/', 'dockerhub-credential') {
-
-        def customImage = docker.build("jokeru17/mynodeapp:latest")
-        customImage.push()
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDENTIAL = 'dockerhub-credential'
+        IMAGE_NAME = 'jokeru17/mynodeapp'
+    }
+    stages {
+        stage('Build and push image') {
+            steps {
+                docker.withRegistry('https://registry.hub.docker.com',DOCKERHUB_CREDENTIAL) {
+                    def customImage = docker.build(${IMAGE_NAME}:${env.BUILD_ID})
+                    customImage.push()
+                }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
 }
