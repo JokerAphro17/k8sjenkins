@@ -8,7 +8,7 @@ pipeline {
         stage('Build and push image') {
             steps {
                 docker.withRegistry('https://registry.hub.docker.com',DOCKERHUB_CREDENTIAL) {
-                    def customImage = docker.build(${IMAGE_NAME}:${env.BUILD_ID})
+                    def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
                     customImage.push()
                 }
         }
