@@ -38,9 +38,9 @@
 node {
     checkout scm
 
-    def customImage = docker.build("my-image:lastest")
+   docker.withRegistry('https://registry.example.com', 'dockerhub-credential') {
 
-    customImage.inside {
-        sh 'make test'
+        def customImage = docker.build("jokeru17/mynodeapp:latest")
+        customImage.push()
     }
 }
