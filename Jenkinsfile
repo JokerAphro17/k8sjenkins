@@ -40,10 +40,6 @@ pipeline {
     stages {
         stage('Build') {
            def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-        customImage.inside {
-            echo 'Testing...'
-              }
         }
     }
 
