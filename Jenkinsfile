@@ -40,7 +40,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'ls -l'
+                sh 'ls -l'
             }
         }
     }
