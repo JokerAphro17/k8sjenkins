@@ -4,9 +4,10 @@ metadata:
   name: node-app-service
 spec:
   selector:
-    app: node-app
+    app: node-app # the ingress will forward traffic to this service using this label
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer
+  type: NodePort # this will expose the service to the outside world
+
