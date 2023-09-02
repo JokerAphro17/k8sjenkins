@@ -34,13 +34,13 @@
 //     }
 // }
 // }
-pipeline {
-    agent any
 
-    stages {
-        stage('Build') {
-           def customImage = docker.build("my-image:${env.BUILD_ID}")
-        }
+node {
+    checkout scm
+
+    def customImage = docker.build("my-image:lastest")
+
+    customImage.inside {
+        sh 'make test'
     }
-
 }
