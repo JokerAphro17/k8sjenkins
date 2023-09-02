@@ -39,9 +39,11 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                sh 'docker build -t mynodeapp .'
-            }
+           def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+        customImage.inside {
+            echo 'Testing...'
+              }
         }
     }
 
