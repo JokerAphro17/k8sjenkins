@@ -12,6 +12,7 @@ pipeline {
                     customImage.push()
                 }
         }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
