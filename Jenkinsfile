@@ -24,7 +24,8 @@ pipeline {
             steps {
 				script
                 {
-                    sh "kubectl get all"
+                    sh "gcloud container clusters get-credentials k8s-env --region us-central1 --project vm-grand-gbapleu"
+                    sh 'kubectl get all'
                 }
             }
         }
