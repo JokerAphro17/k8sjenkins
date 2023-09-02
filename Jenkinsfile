@@ -25,7 +25,8 @@ pipeline {
 				script
                 {
                     sh "gcloud container clusters get-credentials k8s-env --region us-central1 --project vm-grand-gbapleu"
-                    sh 'kubectl get all'
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh  "kubectl set image deployment/node-app-deployment node-app-container=jokeru17/mynodeapp:${env.BUILD_ID}"
                 }
             }
         }
