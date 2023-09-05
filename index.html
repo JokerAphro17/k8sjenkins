@@ -10,7 +10,7 @@
     <input type="radio" name="type" id="type" value="1">Matin
     <input type="radio" name="type" id="type" value="2">Soir
     <button id="btn">
-        Envoyer
+        Envoyer le former 
     </button>
 </body>
 </html>
@@ -40,7 +40,8 @@
     workTimeTrackerDesc: description.value,
 }
 
-        fetch('http://localhost:8000/api/test', {
+        fetch('http://localhost:8000/api/worktimetracker',
+         {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
