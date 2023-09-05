@@ -7,7 +7,9 @@
 </head>
 <body>
     <textarea name="text" id="description" cols="30" rows="10"></textarea>
-    <input type="radio" name="type" id="type" value="1">Matin
+    <input type="radio" name="type" id="type" value="1"
+        checked
+    >Matin
     <input type="radio" name="type" id="type" value="2">Soir
     <button id="btn">
         Envoyer le former 
@@ -40,7 +42,7 @@
     workTimeTrackerDesc: description.value,
 }
 
-        fetch('http://localhost:8000/api/worktimetracker',
+        fetch('http://74.208.252.142:50011/work-time-tracker/create',
          {
             method: 'POST',
             headers: {
