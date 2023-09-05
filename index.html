@@ -6,6 +6,56 @@
     <title>Site Test</title>
 </head>
 <body>
-    The new update 
+    <textarea name="text" id="description" cols="30" rows="10"></textarea>
+    <input type="radio" name="type" id="type" value="1">Matin
+    <input type="radio" name="type" id="type" value="2">Soir
+    <button id="btn">
+        Envoyer
+    </button>
 </body>
 </html>
+
+
+<!-- Path: script.js -->
+<script>
+    const btn = document.getElementById('btn');
+    const description = document.getElementById('description');
+    const type = document.getElementById('type');
+    const today = new Date();
+    // get to at this format string yyyy-mm-dd
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+    btn.addEventListener('click', () => {
+        const data = {
+    departmentId: 1,
+    employeeId: 24,
+    projectId: 68,
+    serviceId: 45,
+    startDate: date,
+    endDate: date, 
+    startTime: type.value == 1 ? "08:00" : "14:00",
+    endTime: type.value == 1 ? "12:30" : "18:00",
+    taskId: 12,
+    workTaskProgressionId: 1,
+    workTimeTrackerDesc: description.value,
+}
+
+        fetch('http://localhost:8000/api/test', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("it's ok");
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+            alert("something went wrong");
+        });
+    });
+
+</script>
